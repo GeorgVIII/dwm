@@ -68,7 +68,7 @@ static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
-	{ MODKEY,  XK_space,                       spawn,          CMD("chlt") },
+	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
 	{ MODKEY,  XK_m,                           spawn,          CMD("tp", "toggle") },
 	/* multimedia keys */
 	{ 0,       XF86XK_AudioRaiseVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB+") },
