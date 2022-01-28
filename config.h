@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 16;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "IBM Plex Mono:size=13" };
@@ -69,7 +69,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
 	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
-	{ MODKEY,  XK_m,                           spawn,          CMD("tp", "toggle") },
+	{ MODKEY,     XK_BackSpace,                spawn,          CMD("tp", "toggle") },
 	/* multimedia keys */
 	{ 0,       XF86XK_AudioRaiseVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB+") },
 	{ 0,       XF86XK_AudioLowerVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB-") },
@@ -98,7 +98,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_o,      setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
