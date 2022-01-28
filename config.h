@@ -69,7 +69,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
 	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
-	{ MODKEY,     XK_BackSpace,                spawn,          CMD("tp", "toggle") },
+	{ MODKEY,     XK_Alt_R,                    spawn,          CMD("tp", "toggle") },
 	/* multimedia keys */
 	{ 0,       XF86XK_AudioRaiseVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB+") },
 	{ 0,       XF86XK_AudioLowerVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB-") },
