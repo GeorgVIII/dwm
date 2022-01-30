@@ -70,6 +70,8 @@ static Key keys[] = {
 	/* commands */
 	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
 	{ MODKEY,     XK_Alt_R,                    spawn,          CMD("tp", "toggle") },
+	{ 0,          XK_Print,                    spawn,          CMD("shot") },
+	{ ShiftMask,  XK_Print,                    spawn,          CMD("ffrec") },
 	/* multimedia keys */
 	{ 0,       XF86XK_AudioRaiseVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB+") },
 	{ 0,       XF86XK_AudioLowerVolume,        spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB-") },
