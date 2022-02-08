@@ -1,4 +1,4 @@
-/* dwm configuration (patches: dwm-fullgaps, dwm-movestack) */
+/* dwm configuration (patches: dwm-fullgaps, dwm-movestack, dwm-pertag) */
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
