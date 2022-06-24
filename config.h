@@ -69,7 +69,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* commands */
 	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
-	{ MODKEY,     XK_Alt_R,                    spawn,          CMD("tp", "toggle") },
+	{ 0,          XK_Alt_R,                    spawn,          CMD("tp", "toggle") },
 	{ 0,          XK_Print,                    spawn,          CMD("shot") },
 	{ ShiftMask,  XK_Print,                    spawn,          CMD("ffrec") },
 	{ MODKEY,     XK_o,                        spawn,          CMD("dfo") },
