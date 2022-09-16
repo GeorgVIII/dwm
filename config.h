@@ -58,6 +58,12 @@ static const Layout layouts[] = {
 /* helper for spawning new-style commands */
 #define CMD(...) { .v = (const char*[]){ __VA_ARGS__, NULL } }
 
+/* helper for creating command bindings */
+#define SPAWN(MOD, KEY, COMM) { MOD, KEY, spawn, COMM }
+
+/* helper for creating command bindings which should update statusbar */
+#define SPAWN_UPD(MOD, KEY, COMM) { MOD, KEY, spawn, COMM }, { MOD, KEY, spawn, CMD("sb", "-u") }
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
@@ -66,20 +72,20 @@ static const char *termcmd[]  = { "st", NULL };
 #include <X11/XF86keysym.h>
 #include "movestack.c"
 static Key keys[] = {
-	/* modifier                     key        function        argument */
 	/* commands */
-	{ ShiftMask,  XK_Shift_R,                  spawn,          CMD("chlt") },
-	{ 0,          XK_Alt_R,                    spawn,          CMD("tp", "toggle") },
-	{ 0,          XK_Print,                    spawn,          CMD("shot") },
-	{ ShiftMask,  XK_Print,                    spawn,          CMD("ffrec") },
-	/* multimedia keys */
-	{ 0,          XF86XK_AudioRaiseVolume,     spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB+") },
-	{ 0,          XF86XK_AudioLowerVolume,     spawn,          CMD("amixer", "-q", "sset", "Master", "0.75dB-") },
-	{ 0,          XF86XK_AudioMute,            spawn,          CMD("amixer", "-q", "sset", "Master", "toggle") },
-	{ 0,          XF86XK_MonBrightnessUp,      spawn,          CMD("chbrt", "+10") },
-	{ 0,          XF86XK_MonBrightnessDown,    spawn,          CMD("chbrt", "-10") },
-	{ ShiftMask,  XF86XK_MonBrightnessUp,      spawn,          CMD("chbrt", "+1") },
-	{ ShiftMask,  XF86XK_MonBrightnessDown,    spawn,          CMD("chbrt", "-1") },
+	/* type    modifier    key                       command */
+	SPAWN_UPD (ShiftMask,  XK_Shift_R,               CMD("chlt")),
+	SPAWN     (0,          XK_Alt_R,                 CMD("tp", "toggle")),
+	SPAWN     (0,          XK_Print,                 CMD("shot")),
+	SPAWN     (ShiftMask,  XK_Print,                 CMD("ffrec")),
+	SPAWN_UPD (0,          XF86XK_AudioRaiseVolume,  CMD("amixer", "-q", "sset", "Master", "0.75dB+")),
+	SPAWN_UPD (0,          XF86XK_AudioLowerVolume,  CMD("amixer", "-q", "sset", "Master", "0.75dB-")),
+	SPAWN_UPD (0,          XF86XK_AudioMute,         CMD("amixer", "-q", "sset", "Master", "toggle")),
+	SPAWN_UPD (0,          XF86XK_MonBrightnessUp,   CMD("chbrt", "+10")),
+	SPAWN_UPD (0,          XF86XK_MonBrightnessDown, CMD("chbrt", "-10")),
+	SPAWN_UPD (ShiftMask,  XF86XK_MonBrightnessUp,   CMD("chbrt", "+1")),
+	SPAWN_UPD (ShiftMask,  XF86XK_MonBrightnessDown, CMD("chbrt", "-1")),
+	/* modifier                     key        function        argument */
 	/* wm patches */
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
