@@ -61,9 +61,6 @@ static const Layout layouts[] = {
 /* helper for creating command bindings */
 #define SPAWN(MOD, KEY, COMM) { MOD, KEY, spawn, COMM }
 
-/* helper for creating command bindings which should update statusbar */
-#define SPAWN_UPD(MOD, KEY, COMM) { MOD, KEY, spawn, COMM }, { MOD, KEY, spawn, CMD("sb", "-u") }
-
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
@@ -73,18 +70,18 @@ static const char *termcmd[]  = { "st", NULL };
 #include "movestack.c"
 static Key keys[] = {
 	/* commands */
-	/* type    modifier    key                       command */
-	SPAWN_UPD (ShiftMask,  XK_Shift_R,               CMD("chlt")),
-	SPAWN     (0,          XK_Alt_R,                 CMD("tp", "toggle")),
-	SPAWN     (0,          XK_Print,                 CMD("shot")),
-	SPAWN     (ShiftMask,  XK_Print,                 CMD("ffrec")),
-	SPAWN_UPD (0,          XF86XK_AudioRaiseVolume,  CMD("amixer", "-q", "sset", "Master", "0.75dB+")),
-	SPAWN_UPD (0,          XF86XK_AudioLowerVolume,  CMD("amixer", "-q", "sset", "Master", "0.75dB-")),
-	SPAWN_UPD (0,          XF86XK_AudioMute,         CMD("amixer", "-q", "sset", "Master", "toggle")),
-	SPAWN_UPD (0,          XF86XK_MonBrightnessUp,   CMD("chbrt", "+10")),
-	SPAWN_UPD (0,          XF86XK_MonBrightnessDown, CMD("chbrt", "-10")),
-	SPAWN_UPD (ShiftMask,  XF86XK_MonBrightnessUp,   CMD("chbrt", "+1")),
-	SPAWN_UPD (ShiftMask,  XF86XK_MonBrightnessDown, CMD("chbrt", "-1")),
+	/*    modifier    key                       command */
+	SPAWN(ShiftMask,  XK_Shift_R,               CMD("kbl", "next")),
+	SPAWN(0,          XK_Alt_R,                 CMD("tp", "toggle")),
+	SPAWN(0,          XK_Print,                 CMD("shot")),
+	SPAWN(ShiftMask,  XK_Print,                 CMD("ffrec")),
+	SPAWN(0,          XF86XK_AudioRaiseVolume,  CMD("vol", "raise")),
+	SPAWN(0,          XF86XK_AudioLowerVolume,  CMD("vol", "lower")),
+	SPAWN(0,          XF86XK_AudioMute,         CMD("vol", "toggle")),
+	SPAWN(0,          XF86XK_MonBrightnessUp,   CMD("brt", "up", "10")),
+	SPAWN(0,          XF86XK_MonBrightnessDown, CMD("brt", "down", "10")),
+	SPAWN(ShiftMask,  XF86XK_MonBrightnessUp,   CMD("brt", "up", "1")),
+	SPAWN(ShiftMask,  XF86XK_MonBrightnessDown, CMD("brt", "down", "1")),
 	/* modifier                     key        function        argument */
 	/* wm patches */
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
